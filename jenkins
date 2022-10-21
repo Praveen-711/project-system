@@ -1,0 +1,21 @@
+pipeline{
+ agent{
+    node{
+        label 'dot'
+    }
+ }
+ stages{
+    stage('vcs'){
+        steps{
+            git url: 'https://github.com/Praveen-711/project-system.git',
+            branch: 'main'
+        }
+    }
+    stage('build'){
+        steps{
+            sh "dotnet build"
+            sh "dotnet publish"
+        }
+    }
+ }   
+}
